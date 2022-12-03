@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+
+  #myTabContent {
+    width: 50vw;
+
+    .dates {
+      @include flex-center();
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  
+    .location {
+      #countries,
+      #cities {
+        max-height: 40vh;
+        overflow-y: scroll;
+      }
+  
+      #economy_types {
+        @include flex();
+        flex-direction: column;
+      }
+    }
+  
+    .buttons {
+      margin-top: 50px;
+      @include flex-end();
+    }
+  }
+
+  .search-categories {
+    margin: $spacing;
+  }
+    .nav-item {
+      .active {
+        border-bottom: 1px solid $primary-color;
+      }
+
+      .active:hover {
+        border-bottom: 1px solid $hover-color;
+      }
+    }
+
+    .nav-link {
+      color:  $primary-color;
+    }
+    .nav-link:hover {
+      color: $hover-color
+    }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/reset.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
+  crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../styles/index.css">
+  <title>Searching</title>
+</head>
+<body>
+  <div class="container">
+    <div class="search-categories">
+      <ul class="nav flex-column" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" 
+          type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-engines-fill" viewBox="0 0 16 16">
+              <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0Z"/>
+            </svg>
+            Flights</a>
+        </li>
+
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" viewBox="0 0 640 512">
+              <path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 
+              96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 
+              32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zM176 288c-44.2 0-80-35.8-80-80s35.8-80 
+              80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg>
+            Hotels</a>
+        </li>
+
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" 
+          type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
+            <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
+          </svg>
+            Cars</a>
+        </li>
+      </ul>
+   </div>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" 
+      aria-labelledby="home-tab">
+        <div class="flight">
+          <form class="row g-3 needs-validation" novalidate>
+            <div class="dates">
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip01" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="startDate1" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+        
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip02" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="endDate1" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+            </div>
+      
+            <div class="location">
+              <div class="inputFrom">
+                <label for="validationTooltip03" class="form-label">From</label>
+                <input type="text" class="form-control" id="validationTooltip03" required>
+                <div class="invalid-tooltip">
+                  Please provide a valid city.
+                </div>
+              </div>
+
+              <div class="inputTo">
+                <label for="validationTooltip03" class="form-label">To</label>
+                <input type="text" class="form-control" id="validationTooltip03" required>
+                <div class="invalid-tooltip">
+                  Please provide a valid city.
+                </div>
+              </div>
+            </div>
+      
+            <div class="buttons">
+              <button class="btn btn-light" type="reset">Clear</button>
+              <button id="flights-btn"  class="btn btn-primary" type="submit" disabled>Search</button>
+            </div>
+          </form>
+          </div>
+      </div>
+
+      <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" 
+      aria-labelledby="profile-tab">
+        <div class="hotels">
+          <form class="row g-3 needs-validation" novalidate>
+            <div class="dates">
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip01" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="startDate2" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+        
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip02" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="endDate2" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+            </div>
+      
+              <div class="amenities">
+                <label for="validationTooltip03" class="form-label">Amenities</label>
+                <select class="form-select" id="inputGroupSelect01" required>
+                  <option selected>1</option>
+                  <option value="1">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                  <option value="4">5</option>
+                </select>
+              </div>
+
+            <div class="location">
+              <div class="countries">
+                <label for="validationTooltip03" class="form-label">Country</label>
+                <select class="form-select" id="countries" required>
+                  <option selected>Choose the country...</option>
+                </select>
+              </div>
+      
+              <div class="cities">
+                  <label for="validationTooltip03" class="form-label">Cities</label>
+                  <select class="form-select" id="cities" required>
+                  </select>
+              </div>
+            </div>
+      
+            <div class="buttons">
+              <button class="btn btn-light" type="reset">Clear</button>
+              <button class="btn btn-primary" type="submit" disabled>Search</button>
+            </div>
+          </form>
+          </div>
+      </div>
+
+      <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" 
+      aria-labelledby="contact-tab">
+        <div class="cars">
+          <form class="row g-3 needs-validation" novalidate>
+            <div class="dates">
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip01" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="startDate3" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+        
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip02" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="endDate3" required>
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+            </div>
+      
+            <div class="location">
+                <div class="btn-group" id="economy_types">
+                    <label for="validationTooltip03" class="form-label">Type</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                      <option selected>Economy</option>
+                      <option value="1">Business</option>
+                      <option value="2">Grand</option>
+                    </select>
+                </div>
+
+                <div class="inputLocation">
+                  <label for="validationTooltip03" class="form-label">Location</label>
+                  <input type="text" class="form-control" id="validationTooltip03" required>
+                  <div class="invalid-tooltip">
+                    Please provide a valid city.
+                  </div>
+                </div>
+            </div>
+      
+            <div class="buttons">
+              <button class="btn btn-light" type="reset">Clear</button>
+              <button class="btn btn-primary" type="submit" disabled>Search</button>
+            </div>
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./src/index.js"></script>
+</html>
