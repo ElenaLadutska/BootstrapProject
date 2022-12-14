@@ -15,6 +15,16 @@
       #cities {
         max-height: 40vh;
         overflow-y: scroll;
+
+      #amenities {
+        select #amenities-select{
+          option[value = '1'] {
+            background-image: '<i class="bi bi-star-fill"></i>';
+            background-color: black
+          }
+        }
+
+      }
       }
   
       #economy_types {
@@ -48,4 +58,50 @@
     .nav-link:hover {
       color: $hover-color
     }
+}
+
+.content {
+  .history-container {
+
+    .list {
+      font-size: large;
+
+      .history-item {
+        border: 2px solid $primary-color;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+      }
+
+      .history-item:hover {
+        border-color: $hover-color;
+        color: $hover-color
+      }
+
+      .btn {
+        margin-left: 10vw;
+      }
+
+      .btn:hover {
+        background-color: $hover-color;
+        border-color: $hover-color;
+      }
+    }
+  }
+  .page-numbers {
+    .btn {
+      color: $primary-color;
+    }
+
+    .active {
+      background-color: $primary-color;
+      color: $text-color;
+    }
+
+    .btn:hover {
+      background-color: $hover-color;
+      border-color: $hover-color;
+      color: $text-color;
+    }
+  }
 }

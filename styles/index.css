@@ -17,6 +17,11 @@
   max-height: 40vh;
   overflow-y: scroll;
 }
+.container #myTabContent .location #countries #amenities select #amenities-select option[value="1"],
+.container #myTabContent .location #cities #amenities select #amenities-select option[value="1"] {
+  background-image: '<i class="bi bi-star-fill"></i>';
+  background-color: black;
+}
 .container #myTabContent .location #economy_types {
   display: flex;
   flex-direction: column;
@@ -41,6 +46,39 @@
 }
 .container .nav-link:hover {
   color: #0ebeac;
+}
+
+.content .history-container .list {
+  font-size: large;
+}
+.content .history-container .list .history-item {
+  border: 2px solid #6428cc;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+}
+.content .history-container .list .history-item:hover {
+  border-color: #0ebeac;
+  color: #0ebeac;
+}
+.content .history-container .list .btn {
+  margin-left: 10vw;
+}
+.content .history-container .list .btn:hover {
+  background-color: #0ebeac;
+  border-color: #0ebeac;
+}
+.content .page-numbers .btn {
+  color: #6428cc;
+}
+.content .page-numbers .active {
+  background-color: #6428cc;
+  color: #fff;
+}
+.content .page-numbers .btn:hover {
+  background-color: #0ebeac;
+  border-color: #0ebeac;
+  color: #fff;
 }
 
 /*!

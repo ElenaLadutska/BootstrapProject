@@ -7,12 +7,12 @@ const getCountries = fetch('https://namaztimes.kz/ru/api/country')
   .then(response => response.json())
   .then(result => showCountry(result));
 
-const getState = async (countryId) => {
-  const response = await fetch(`https://namaztimes.kz/ru/api/states?id=${countryId}`);
+const getState = async (chosenCountryId) => {
+  const response = await fetch(`https://namaztimes.kz/ru/api/states?id=${chosenCountryId}`);
   const result = await response.json();
 
   return getCities(result);
-}
+};
 
 const getCities = async (state) => {
   const cities = [];
@@ -25,22 +25,22 @@ const getCities = async (state) => {
   };
 
   return showCity(cities);
-} 
+};
 
 const showCountry = (place) => {
-  for (const [countryId, countryName] of Object.entries(place)) {
+  for (const  countryName of Object.values(place)) {
     const elemCountry = document.createElement('option');
 
     elemCountry.innerHTML = countryName;
-    elemCountry.value = countryId;
+    elemCountry.value = countryName;
 
     countries.appendChild(elemCountry);
   };
 
-  countries.addEventListener('change', event => {
-    const countryId = event.target.value;
+  countries.addEventListener('click', event => {
+    const chosenCountryId = event.target.selectedIndex;
 
-    getState(countryId);
+    getState(chosenCountryId);
     
     while (cities.firstChild) {
       cities.removeChild(cities.firstChild);
@@ -52,7 +52,7 @@ const showCity = (place) => {
   for (const city of Object.values(place)) {
     for (const cityName of Object.values(city)) {
       const elemCity = document.createElement('option');
-      
+
       elemCity.innerHTML = cityName;
 
       cities.appendChild(elemCity);
@@ -94,17 +94,44 @@ const isFormFilled = () => {
   const forms = document.querySelectorAll('.needs-validation');
 
   Array.from(forms).forEach(form => {
+    const btn = form.querySelector('button[type="submit"]');
+
     form.addEventListener('change', event => {
       if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
       }
       else {
-        const btn = form.querySelector('button[type="submit"]');
         btn.disabled = false;
-        btn.addEventListener('click', () => alert('Form sent'))
-      }
+      };
+
     }, false);
+
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      getDataFromSubmitForm(form);
+    });
   })
 }
 isFormFilled();
+
+const getDataFromSubmitForm = (form) => {
+  let history = JSON.parse(localStorage.getItem('history')) || [];
+
+  const inputFormsData = form.querySelectorAll('input');
+  const selectFormsData = form.querySelectorAll('select');
+  
+  let data = {};
+
+  for (let input of inputFormsData) {
+    data[input.dataset.key] = input.value;
+  };
+
+  for (let select of selectFormsData) {
+    data[select.dataset.key] = select.value;
+  };
+
+  history.push(data);
+
+  localStorage.setItem('history', JSON.stringify(history));
+};
