@@ -1,17 +1,17 @@
 const paginationElement = document.getElementById('pagination');
-const historyContainer = document.getElementById('list')
+const historyContainer = document.getElementById('list');
 
 let currentPage = 1;
 let rows = 20;
 
-const displayList = (items, wrapper, rows, page) => {
+const displayList = (pagination, wrapper, rows, page) => {
   wrapper.innerHTML = '';
 
   page--;
 
   let start = rows * page;
   let end = start + rows;
-  let paginatedItems = items.slice(start, end);
+  let paginatedItems = pagination.slice(start, end);
 
   for (let i = 0; i < paginatedItems.length; i++) {
     let item = paginatedItems[i];
@@ -19,79 +19,96 @@ const displayList = (items, wrapper, rows, page) => {
     let itemElement = document.createElement('div');
     itemElement.classList.add('history-item');
 
-    for (let content in item) {
-      const itemContent = document.createElement('span');
-      itemContent.textContent = `${content}: ${item[content]}` + ' ';
+    const icon = document.createElement('i');
+    if (item.type === 'flights') {
+      icon.className = "bi bi-airplane-fill";
+      };
 
-      itemElement.appendChild(itemContent);
+    if (item.type === 'cars') {
+      icon.className = "bi bi-car-front-fill";
     };
 
-    const removeHistotyItem = document.createElement('button');
-    removeHistotyItem.className = 'btn btn-primary'
-    removeHistotyItem.textContent = 'X';
+    if (item.type === 'hotels') {
+      icon.className = "fa-solid fa-bed";
+    };
 
-    itemElement.appendChild(removeHistotyItem)
+    itemElement.appendChild(icon);
 
-    removeHistotyItem.addEventListener('click', event => {
-      const clickedElementParent = event.target.parentElement.id;
-      const id = itemElement.id;
-      
-      if (clickedElementParent === id) {
-        itemElement.remove();
-        items.splice(id, 1);
-
-        localStorage.setItem('history', JSON.stringify(items));
+    for (let content in item) {
+      const itemContent = document.createElement('span');
+      if (content !== 'type') {
+        itemContent.textContent = `${content}: ${item[content]}` + ' ';
       };
-    });
 
-    wrapper.appendChild(itemElement);
+      const containerItems = Array.from(historyContainer.children);
+      containerItems.forEach((elem, id) => elem.id = id++);
+
+      itemElement.appendChild(itemContent);
+      wrapper.appendChild(itemElement)
+    };
+    
+    const removeHistotyItem = document.createElement('button');
+
+      removeHistotyItem.className = 'btn btn-primary'
+      removeHistotyItem.textContent = 'X';
+
+      itemElement.appendChild(removeHistotyItem);
+
+      removeHistotyItem.addEventListener('click', event => {
+        const clickedElementParent = event.target.parentElement;
+        const id = clickedElementParent.id;
+        
+        if (id === itemElement.id){
+          itemElement.remove();
+          paginatedItems.splice(id, 1);
+
+          console.log(paginatedItems)
+          localStorage.setItem('history', JSON.stringify(paginatedItems));
+        };
+      });
   };
-
-  const historyList = document.createElement('div');
-  historyList.className = 'history-items';
-  
-  historyContainer.appendChild(historyList);
 };
-
-const paginationButton = (page, items) => {
-  let button = document.createElement('button');
-  button.innerText = page;
-  button.className = 'btn'
-
-  if (currentPage === page) {
-    button.classList.add('active');
-  };
-
-  button.addEventListener('click', function() {
-    currentPage = page;
-    displayList(items,historyContainer, rows, currentPage);
-
-    let currentButton = document.querySelector('.page-numbers button.active');
-    currentButton.classList.remove('active');
-
-    button.classList.add('active');
-  });
-
-  return button;
-}
-
-const setupPagination = (items, wrapper, rows) => {
-  wrapper.innerHTML = '';
-
-  let pageCount = Math.ceil(items.length / rows);
-
-  for (let i = 1; i < pageCount + 1; i++) {
-    let button = paginationButton(i, items);
-
-    wrapper.appendChild(button)
-  };
-}
 
 const showHistory = () => {
-  const getInfoFromLocalStorage = JSON.parse(localStorage.getItem('history'));
+  const getInfoFromLS = JSON.parse(localStorage.getItem('history'));
 
-  displayList(getInfoFromLocalStorage, historyContainer, rows, currentPage);
-  setupPagination(getInfoFromLocalStorage, paginationElement,rows)
+  const paginationButton = (page) => {
+    let button = document.createElement('button');
+    button.innerText = page;
+    button.className = 'btn'
+  
+    if (currentPage === page) {
+      button.classList.add('active');
+    };
+  
+    button.addEventListener('click', function() {
+      currentPage = page;
+      displayList(itemsForPagination, historyContainer, rows, currentPage);
+  
+      let currentButton = document.querySelector('.page-numbers button.active');
+      currentButton.classList.remove('active');
+  
+      button.classList.add('active');
+    });
+  
+    return button;
+  };
+  
+  const setupPagination = (items, wrapper, rows) => {
+    wrapper.innerHTML = '';
+  
+    let pageCount = Math.ceil(items.length / rows);
+  
+    for (let i = 1; i < pageCount + 1; i++) {
+      let button = paginationButton(i, items);
+  
+      wrapper.appendChild(button);
+    };
+  }
+
+  displayList(getInfoFromLS, historyContainer, rows, currentPage);
+  setupPagination(getInfoFromLS, paginationElement,rows)
 };
 
-showHistory();
+window.addEventListener('load', showHistory);
+

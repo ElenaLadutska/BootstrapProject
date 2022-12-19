@@ -116,7 +116,7 @@ const isFormFilled = () => {
 isFormFilled();
 
 const getDataFromSubmitForm = (form) => {
-  let history = JSON.parse(localStorage.getItem('history')) || [];
+  const history = JSON.parse(localStorage.getItem('history')) || [];
 
   const inputFormsData = form.querySelectorAll('input');
   const selectFormsData = form.querySelectorAll('select');
@@ -131,7 +131,21 @@ const getDataFromSubmitForm = (form) => {
     data[select.dataset.key] = select.value;
   };
 
-  history.push(data);
+  if (form.parentElement.className === 'flight') {
+    data.type = 'flights';
+    history.push(data);
+    localStorage.setItem('history', JSON.stringify(history));
+  };
 
-  localStorage.setItem('history', JSON.stringify(history));
+  if (form.parentElement.className === 'hotels') {
+    data.type = 'hotels';
+    history.push(data);
+    localStorage.setItem('history', JSON.stringify(history));
+  };
+
+  if (form.parentElement.className === 'cars') {
+    data.type = 'cars';
+    history.push(data);
+    localStorage.setItem('history', JSON.stringify(history));
+  };
 };

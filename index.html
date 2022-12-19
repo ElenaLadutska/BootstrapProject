@@ -6,64 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
   crossorigin="anonymous"></script>
-
+  <script src="https://kit.fontawesome.com/a1d9fb4643.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../styles/index.css">
   <title>Searching</title>
 </head>
 <body>
+  <header>
+    <logo>
+      <span><b>spark</b></span>
+      <i class="bi bi-fire"></i>
+    </logo>
+  </header>
+
   <div class="container">
-    <div class="search-categories">
-      <ul class="nav flex-column" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="flights-tab" data-bs-toggle="tab" data-bs-target="#flight-tab-pane" 
-          type="button" role="tab" aria-controls="flight-tab-pane" aria-selected="true">
-            
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-            class="bi bi-airplane-engines-fill" viewBox="0 0 16 16">
-              <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0Z"/>
-            </svg>
-            Flights</a>
-        </li>
-
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels-tab-pane"
-            type="button" role="tab" aria-controls="hotels-tab-pane" aria-selected="false">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" viewBox="0 0 640 512">
-              <path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 
-              96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 
-              32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zM176 288c-44.2 0-80-35.8-80-80s35.8-80 
-              80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg>
-            Hotels</a>
-        </li>
-
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="cars-tab" data-bs-toggle="tab" data-bs-target="#cars-tab-pane" 
-          type="button" role="tab" aria-controls="cars-tab-pane" aria-selected="false">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-          class="bi bi-car-front-fill" viewBox="0 0 16 16">
-            <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
-          </svg>
-            Cars</a>
-        </li>
-
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="history-tab" href="history.html">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-          class="bi bi-card-list" viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-            <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-          </svg>
-            History</a>
-        </li>
-      </ul>
-   </div>
+   <nav class="navbar navbar-expand-lg bg">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+        <div class="search-categories collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav flex-column" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="flights-tab" data-bs-toggle="tab" data-bs-target="#flight-tab-pane" 
+              type="button" role="tab" aria-controls="flight-tab-pane" aria-selected="true">
+                
+                <i class="bi bi-airplane-fill"></i>
+                Flights</a>
+            </li>
+    
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels-tab-pane"
+                type="button" role="tab" aria-controls="hotels-tab-pane" aria-selected="false">
+                
+                  <i class="fa-solid fa-bed"></i>
+                Hotels</a>
+            </li>
+    
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="cars-tab" data-bs-toggle="tab" data-bs-target="#cars-tab-pane" 
+              type="button" role="tab" aria-controls="cars-tab-pane" aria-selected="false">
+              
+              <i class="bi bi-car-front"></i>
+                Cars</a>
+            </li>
+    
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="history-tab" href="history.html">
+                <i class="bi bi-card-text"></i>
+                History</a>
+            </li>
+          </ul>
+       </div>
+  </nav>
 
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="flight-tab-pane" role="tabpanel" 
@@ -185,7 +182,7 @@
         
               <div class="col-md-4 position-relative">
                 <label for="validationTooltip02" class="form-label">End Date</label>
-                <input data-key="End-date" type="date" class="end form-control" id="endDate3" required>
+                <input data-key="End-date" data-parent="Cars" type="date" class="end form-control" id="endDate3" required>
                 <div class="valid-tooltip">
                   Looks good!
                 </div>
