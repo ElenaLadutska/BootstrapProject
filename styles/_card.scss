@@ -1,6 +1,6 @@
 header {
   position: fixed;
-  top: 0;
+  top: 2vh;
   left: 3vw;
   @include flex;
   font-size: large;
@@ -81,7 +81,14 @@ header {
 
 .content {
   .history-container {
+    h1 {
+      font-size: larger;
+      margin-bottom: 2vh;
+      font-weight: bolder;
+    }
+
     .list {
+      width: 50vw;
       font-size: large;
 
       .history-item {
@@ -89,7 +96,7 @@ header {
         border-radius: 10px;
         margin-bottom: 5px;
         padding: 5px 10px;
-        @include flex();
+        @include flex-center();
         justify-content:space-between;
       }
 

@@ -1,7 +1,8 @@
+import '../styles/index.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.js'
+
 const countries = document.getElementById('countries');
-const btnCountry = document.getElementById('btn-country');
 const cities = document.getElementById('cities');
-const btnCity = document.getElementById('btn-city');
 
 const getCountries = fetch('https://namaztimes.kz/ru/api/country')
   .then(response => response.json())

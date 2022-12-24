@@ -1,7 +1,7 @@
 @charset "UTF-8";
 header {
   position: fixed;
-  top: 0;
+  top: 2vh;
   left: 3vw;
   display: flex;
   font-size: large;
@@ -65,7 +65,13 @@ header {
   color: #0ebeac;
 }
 
+.content .history-container h1, .content .history-container .h1 {
+  font-size: larger;
+  margin-bottom: 2vh;
+  font-weight: bolder;
+}
 .content .history-container .list {
+  width: 50vw;
   font-size: large;
 }
 .content .history-container .list .history-item {
@@ -74,6 +80,8 @@ header {
   margin-bottom: 5px;
   padding: 5px 10px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   justify-content: space-between;
 }
 .content .history-container .list .history-item:hover {
