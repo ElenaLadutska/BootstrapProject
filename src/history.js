@@ -5,8 +5,7 @@ const paginationElement = document.getElementById('pagination');
 const historyContainer = document.getElementById('list');
 
 let currentPage = 1;
-let rows = 5;
-
+const ROWS = 20;
 
 const showHistory = () => {
   const getInfoFromLS = JSON.parse(localStorage.getItem('history'));
@@ -22,7 +21,7 @@ const showHistory = () => {
   
     button.addEventListener('click', function() {
       currentPage = page;
-      displayList(getInfoFromLS, historyContainer, rows, currentPage);
+      displayList(getInfoFromLS, historyContainer, ROWS, currentPage);
   
       let currentButton = document.querySelector('.page-numbers button.active');
       currentButton.classList.remove('active');
@@ -91,8 +90,8 @@ const showHistory = () => {
             pagination.splice(id, 1);
             
             localStorage.setItem('history', JSON.stringify(pagination));
-            displayList(pagination, historyContainer, rows, currentPage);
-            setupPagination(pagination, paginationElement,rows)
+            displayList(pagination, historyContainer, ROWS, currentPage);
+            setupPagination(pagination, paginationElement,ROWS)
           };
         });
     };
@@ -110,8 +109,8 @@ const showHistory = () => {
     };
   };
 
-  displayList(getInfoFromLS, historyContainer, rows, currentPage);
-  setupPagination(getInfoFromLS, paginationElement,rows)
+  displayList(getInfoFromLS, historyContainer, ROWS, currentPage);
+  setupPagination(getInfoFromLS, paginationElement,ROWS)
 };
 
 window.addEventListener('load', showHistory);

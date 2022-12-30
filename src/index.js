@@ -61,35 +61,36 @@ const showCity = (place) => {
   };
 };
 
-const startDateInFlights = document.getElementById('startDate1');
-const endDateInFlights = document.getElementById('endDate1');
-const startDateInHotels = document.getElementById('startDate2');
-const endDateInHotels = document.getElementById('endDate2');
-const startDateInCars = document.getElementById('startDate3');
-const endDateInCars = document.getElementById('endDate3');
+const startDateInFlights = document.getElementById('flightStartDate');
+const endDateInFlights = document.getElementById('flightsEndDate');
+const startDateInHotels = document.getElementById('hotelStartDate');
+const endDateInHotels = document.getElementById('hotelEndDate');
+const startDateInCars = document.getElementById('carStartDate');
+const endDateInCars = document.getElementById('carEndDate');
 
 const currentDate = new Date().setHours(3, 0, 0 ,0);
 
-const checkStartDate = (chosenDate, current) => () => {
-  const start = new Date(chosenDate.value).getTime();
+const checkDate = (startSearchingDate, endSearchingDate, startOrEnd) => () =>{
+  const start = new Date(startSearchingDate.value).getTime();
+  const end = new Date(endSearchingDate.value).getTime();
 
-  return current <= start ? chosenDate.value : chosenDate.value = '';
+  if (startOrEnd === 'start') {
+
+    return endSearchingDate <= start ? startSearchingDate.value : startSearchingDate.value = '';
+  } 
+  else {
+    
+    return start <= end ? endSearchingDate.value : endSearchingDate.value = '';
+  }
 };
 
-const checkEndDate = (start, end) => () => {
-  const startDate = new Date(start.value).getTime();
-  const endDate = new Date(end.value).getTime();
+startDateInFlights.addEventListener('change', checkDate(startDateInFlights, currentDate, 'start'));
+startDateInHotels.addEventListener('change', checkDate(startDateInHotels, currentDate, 'start'));
+startDateInCars.addEventListener('change', checkDate(startDateInCars, currentDate, 'start'));
 
-  return startDate <= endDate ? end.value : end.value = '';
-};
-
-startDateInFlights.addEventListener('change', checkStartDate(startDateInFlights, currentDate));
-startDateInHotels.addEventListener('change', checkStartDate(startDateInHotels, currentDate));
-startDateInCars.addEventListener('change', checkStartDate(startDateInCars, currentDate));
-
-endDateInFlights.addEventListener('change', checkEndDate(startDateInFlights, endDateInFlights));
-endDateInHotels.addEventListener('change', checkEndDate(startDateInHotels, endDateInHotels));
-endDateInCars.addEventListener('change', checkEndDate(startDateInCars, endDateInCars));
+endDateInFlights.addEventListener('change', checkDate(startDateInFlights, endDateInFlights, 'end'));
+endDateInHotels.addEventListener('change', checkDate(startDateInHotels, endDateInHotels, 'end'));
+endDateInCars.addEventListener('change', checkDate(startDateInCars, endDateInCars, 'end'));
 
 const isFormFilled = () => {
   const forms = document.querySelectorAll('.needs-validation');
@@ -135,18 +136,17 @@ const getDataFromSubmitForm = (form) => {
   if (form.parentElement.className === 'flight') {
     data.type = 'flights';
     history.push(data);
-    localStorage.setItem('history', JSON.stringify(history));
   };
 
   if (form.parentElement.className === 'hotels') {
     data.type = 'hotels';
     history.push(data);
-    localStorage.setItem('history', JSON.stringify(history));
   };
 
   if (form.parentElement.className === 'cars') {
     data.type = 'cars';
     history.push(data);
-    localStorage.setItem('history', JSON.stringify(history));
   };
+
+  localStorage.setItem('history', JSON.stringify(history));
 };
