@@ -25,7 +25,7 @@ const getCities = async (state) => {
     cities.push(result);
   };
 
-  return showCity(cities);
+  return showCities(cities);
 };
 
 const showCountry = (place) => {
@@ -49,7 +49,7 @@ const showCountry = (place) => {
   });
 };
 
-const showCity = (place) => {
+const showCities = (place) => {
   for (const city of Object.values(place)) {
     for (const cityName of Object.values(city)) {
       const elemCity = document.createElement('option');
@@ -70,18 +70,24 @@ const endDateInCars = document.getElementById('carEndDate');
 
 const currentDate = new Date().setHours(3, 0, 0 ,0);
 
-const checkDate = (startSearchingDate, endSearchingDate, startOrEnd) => () =>{
-  const start = new Date(startSearchingDate.value).getTime();
-  const end = new Date(endSearchingDate.value).getTime();
+const checkDate = (startDate, endDate, startOrEnd) => () =>{
+  const start = new Date(startDate.value).getTime();
+  let result;
 
   if (startOrEnd === 'start') {
-
-    return endSearchingDate <= start ? startSearchingDate.value : startSearchingDate.value = '';
+    endDate <= start 
+    ? result = startDate.value
+    : startDate.value = ''
   } 
   else {
-    
-    return start <= end ? endSearchingDate.value : endSearchingDate.value = '';
-  }
+    const end = new Date(endDate.value).getTime();
+
+    start <= end 
+    ? result = endDate.value
+    : endDate.value = ''
+  };
+
+  return result;
 };
 
 startDateInFlights.addEventListener('change', checkDate(startDateInFlights, currentDate, 'start'));
@@ -98,16 +104,9 @@ const isFormFilled = () => {
   Array.from(forms).forEach(form => {
     const btn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('change', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      else {
-        btn.disabled = false;
-      };
-
-    }, false);
+    form.addEventListener('change', () => {
+      form.checkValidity() ? btn.disabled = false : btn.disabled = true;
+    });
 
     btn.addEventListener('click', event => {
       event.preventDefault();
@@ -124,6 +123,7 @@ const getDataFromSubmitForm = (form) => {
   const selectFormsData = form.querySelectorAll('select');
   
   let data = {};
+  let type;
 
   for (let input of inputFormsData) {
     data[input.dataset.key] = input.value;
@@ -133,20 +133,13 @@ const getDataFromSubmitForm = (form) => {
     data[select.dataset.key] = select.value;
   };
 
-  if (form.parentElement.className === 'flight') {
-    data.type = 'flights';
-    history.push(data);
-  };
+  form.parentElement.className === 'flight' ? type = 'flights':
+  form.parentElement.className === 'hotels' ? type = 'hotels' :
+  type = 'cars';
 
-  if (form.parentElement.className === 'hotels') {
-    data.type = 'hotels';
-    history.push(data);
-  };
+  data.type = type;
 
-  if (form.parentElement.className === 'cars') {
-    data.type = 'cars';
-    history.push(data);
-  };
+  history.push(data);
 
   localStorage.setItem('history', JSON.stringify(history));
 };

@@ -48,18 +48,14 @@ const showHistory = () => {
       itemElement.classList.add('history-item');
   
       const icon = document.createElement('i');
-      if (item.type === 'flights') {
-        icon.className = "fa-solid fa-plane-up";
-        };
-  
-      if (item.type === 'cars') {
-        icon.className = "fa-solid fa-car";
-      };
-  
-      if (item.type === 'hotels') {
-        icon.className = "fa-solid fa-bed";
-      };
-  
+
+      let classname;
+
+      (item.type === 'flights') ? classname = 'fa-plane-up':
+      (item.type === 'cars') ? classname = 'fa-car':
+      classname = 'fa-bed'
+
+      icon.className = `fa-solid ${classname}`;
       itemElement.appendChild(icon);
   
       for (let content in item) {
@@ -90,6 +86,7 @@ const showHistory = () => {
             pagination.splice(id, 1);
             
             localStorage.setItem('history', JSON.stringify(pagination));
+
             displayList(pagination, historyContainer, ROWS, currentPage);
             setupPagination(pagination, paginationElement,ROWS)
           };
@@ -114,4 +111,3 @@ const showHistory = () => {
 };
 
 window.addEventListener('load', showHistory);
-
