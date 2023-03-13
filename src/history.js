@@ -49,13 +49,14 @@ const showHistory = () => {
   
       const icon = document.createElement('i');
 
-      let classname;
+      const { type  } = item;
+      let className = 'fa-bed';
 
-      (item.type === 'flights') ? classname = 'fa-plane-up':
-      (item.type === 'cars') ? classname = 'fa-car':
-      classname = 'fa-bed'
-
-      icon.className = `fa-solid ${classname}`;
+      if (type === 'flights' || type === 'cars') {
+        className = type === 'cars' ? 'fa-car' : 'fa-plane-up';
+      };
+      
+      icon.className = `fa-solid ${className}`;
       itemElement.appendChild(icon);
   
       for (let content in item) {
@@ -88,7 +89,7 @@ const showHistory = () => {
             localStorage.setItem('history', JSON.stringify(pagination));
 
             displayList(pagination, historyContainer, ROWS, currentPage);
-            setupPagination(pagination, paginationElement,ROWS)
+            setupPagination(pagination, paginationElement, ROWS)
           };
         });
     };

@@ -70,21 +70,16 @@ const endDateInCars = document.getElementById('carEndDate');
 
 const currentDate = new Date().setHours(3, 0, 0 ,0);
 
-const checkDate = (startDate, endDate, startOrEnd) => () =>{
+const checkDate = (startDate, endDate, checkStartOrEndDate) => () =>{
   const start = new Date(startDate.value).getTime();
-  let result;
+  let result = startDate.value;
 
-  if (startOrEnd === 'start') {
-    endDate <= start 
-    ? result = startDate.value
-    : startDate.value = ''
-  } 
-  else {
+  if (checkStartOrEndDate === 'start' && endDate > start) {
+    startDate.value = '';
+  } else if (checkStartOrEndDate === 'end'){
     const end = new Date(endDate.value).getTime();
 
-    start <= end 
-    ? result = endDate.value
-    : endDate.value = ''
+    result = start <= end ? endDate.value : endDate.value = '' 
   };
 
   return result;
@@ -104,9 +99,7 @@ const isFormFilled = () => {
   Array.from(forms).forEach(form => {
     const btn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('change', () => {
-      form.checkValidity() ? btn.disabled = false : btn.disabled = true;
-    });
+    form.addEventListener('change', () => btn.disabled = !form.checkValidity());
 
     btn.addEventListener('click', event => {
       event.preventDefault();
@@ -123,7 +116,6 @@ const getDataFromSubmitForm = (form) => {
   const selectFormsData = form.querySelectorAll('select');
   
   let data = {};
-  let type;
 
   for (let input of inputFormsData) {
     data[input.dataset.key] = input.value;
@@ -133,9 +125,12 @@ const getDataFromSubmitForm = (form) => {
     data[select.dataset.key] = select.value;
   };
 
-  form.parentElement.className === 'flight' ? type = 'flights':
-  form.parentElement.className === 'hotels' ? type = 'hotels' :
-  type = 'cars';
+  let type = 'hotels';
+  let className = form.parentElement.className;
+
+  if (className === 'flight' || className === 'cars') {
+    type = className === 'flight' ? 'flights' : 'cars'
+  };
 
   data.type = type;
 
