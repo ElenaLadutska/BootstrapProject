@@ -6,26 +6,28 @@ const cities = document.getElementById('cities');
 
 const getCountries = fetch('https://namaztimes.kz/ru/api/country')
   .then(response => response.json())
-  .then(result => showCountry(result));
+  .then(result => showCountry(result))
+  .catch(error => alert('something wrong, sorry'));
 
-const getState = async (chosenCountryId) => {
-  const response = await fetch(`https://namaztimes.kz/ru/api/states?id=${chosenCountryId}`);
-  const result = await response.json();
+const getState = (chosenCountryId) => {
+  cities.disabled = true;
 
-  return getCities(result);
+  fetch(`https://namaztimes.kz/ru/api/states?id=${chosenCountryId}`)
+  .then(response => response.json())
+  .then(result => getCities(result))
 };
 
 const getCities = async (state) => {
-  const cities = [];
+  const obtainedCities = [];
 
   for (const states of Object.keys(state)) {
     const response = await fetch(`https://namaztimes.kz/ru/api/cities?id=${states}&type=json`);
     const result = await response.json();
 
-    cities.push(result);
+    obtainedCities.push(result);
   };
 
-  return showCities(cities);
+  return showCities(obtainedCities);
 };
 
 const showCountry = (place) => {
@@ -50,15 +52,19 @@ const showCountry = (place) => {
 };
 
 const showCities = (place) => {
-  for (const city of Object.values(place)) {
-    for (const cityName of Object.values(city)) {
-      const elemCity = document.createElement('option');
+  if (place.length) {
+    cities.disabled = false;
 
-      elemCity.innerHTML = cityName;
-
-      cities.appendChild(elemCity);
+    for (const city of Object.values(place)) {
+      for (const cityName of Object.values(city)) {
+        const elemCity = document.createElement('option');
+  
+        elemCity.innerHTML = cityName;
+  
+        cities.appendChild(elemCity);
+      };
     };
-  };
+  }
 };
 
 const startDateInFlights = document.getElementById('flightStartDate');
